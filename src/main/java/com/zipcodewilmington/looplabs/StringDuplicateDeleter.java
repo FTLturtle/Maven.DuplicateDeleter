@@ -5,4 +5,7 @@ package com.zipcodewilmington.looplabs;
  * @ATTENTION_TO_STUDENTS You are forbidden from modifying the signature of this class.
  */
 public final class StringDuplicateDeleter extends DuplicateDeleter<String> {
+    public StringDuplicateDeleter(String[] stringArray) {
+        super(stringArray);
+    }
 }
