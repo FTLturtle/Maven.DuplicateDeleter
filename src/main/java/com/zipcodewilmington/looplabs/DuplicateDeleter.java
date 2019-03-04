@@ -27,11 +27,11 @@ public abstract class DuplicateDeleter<T> implements DuplicateDeleterInterface<T
             if (array[i].equals(array[i - 1])) {
                 currentDuplicateCount++;
             } else {
-                skipOrCopyCurrentElements(newArray, i, currentDuplicateCount >= maxNumberOfDuplications);
+                skipOrCopyCurrentElementsToNewArray(newArray, i, currentDuplicateCount >= maxNumberOfDuplications);
             }
         }
 
-        skipOrCopyCurrentElements(newArray, array.length, currentDuplicateCount >= maxNumberOfDuplications);
+        skipOrCopyCurrentElementsToNewArray(newArray, array.length, currentDuplicateCount >= maxNumberOfDuplications);
 
         return Arrays.copyOf(newArray, newArray.length - totalNumOfDuplicatesRemoved);
     }
@@ -46,17 +46,17 @@ public abstract class DuplicateDeleter<T> implements DuplicateDeleterInterface<T
             if (array[i].equals(array[i - 1])) {
                 currentDuplicateCount++;
             } else {
-                skipOrCopyCurrentElements(newArray, i, currentDuplicateCount == exactNumberOfDuplications);
+                skipOrCopyCurrentElementsToNewArray(newArray, i, currentDuplicateCount == exactNumberOfDuplications);
             }
         }
 
         // Final check for the final elements of the array
-        skipOrCopyCurrentElements(newArray, array.length, currentDuplicateCount == exactNumberOfDuplications);
+        skipOrCopyCurrentElementsToNewArray(newArray, array.length, currentDuplicateCount == exactNumberOfDuplications);
 
         return Arrays.copyOf(newArray, newArray.length - totalNumOfDuplicatesRemoved);
     }
 
-    private void skipOrCopyCurrentElements(T[] newArray, int originalArrayCurrentIndex, boolean skipCondition) {
+    private void skipOrCopyCurrentElementsToNewArray(T[] newArray, int originalArrayCurrentIndex, boolean skipCondition) {
         if (skipCondition) {
             totalNumOfDuplicatesRemoved += currentDuplicateCount;
             currentDuplicateCount = 1;
